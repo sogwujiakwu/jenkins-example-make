@@ -48,7 +48,7 @@ pipeline {
     }
   }
 */ 
-agent {
+  agent {
     kubernetes {
       yaml '''
         apiVersion: v1
@@ -84,10 +84,4 @@ agent {
       }
     }
   }
-}
-  post {
-    always {
-      cleanWs()
-    }
-  }   
 }
