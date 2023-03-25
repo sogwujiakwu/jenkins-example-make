@@ -22,7 +22,7 @@ pipeline {
     }     
     stage('install make') {
       steps {
-        sh 'apt update && apt install make'
+        sh 'apk update && apk install make'
       }
     }    
     stage('verify make is installed') {
