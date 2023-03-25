@@ -1,14 +1,19 @@
 pipeline {
   agent {
-    docker {
-        image 'ubuntu:latest'
-        // Run the container on the node specified at the
-        // top-level of the Pipeline, in the same workspace,
-        // rather than on a new node entirely:
-        reuseNode true
-        args '--entrypoint='
-        }
-     }
+    kubernetes {
+      yaml '''
+        apiVersion: v1
+        kind: Pod
+        spec:
+          containers:
+          - name: ubuntu
+            image: ubuntu:latest
+            command:
+            - cat
+            tty: true
+        '''
+    }
+  }
   stages {
     stage('clean workspace') {
       steps {
@@ -20,19 +25,18 @@ pipeline {
         checkout scm
       }
     }     
-/*    stage('install make') {
-      steps {
-        sh 'apk update && apk install make'
+ stage('install make') {
+      steps container('ubuntu') {
+        sh 'apt update && apt install make'
       }
-    } 
-*/    
+    }     
     stage('verify make is installed') {
-      steps {
+      steps container('ubuntu') {
         sh 'make --version'
       }
     }
     stage('run make') {
-      steps {
+      steps container('ubuntu') {
         sh 'make'
       }
     }
