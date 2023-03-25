@@ -30,7 +30,7 @@ pipeline {
         checkout scm
       }
     }
-*/    
+   
  stage('install make') {
       steps container('ubuntu') {
         sh 'apt update && apt install make'
