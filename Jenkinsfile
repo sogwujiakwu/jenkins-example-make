@@ -61,7 +61,7 @@ pipeline {
  stage('install make') {
      steps {
           container('ubuntu') {
-            sh 'apt update && apt install make'
+            sh 'apt-get update && apt-get install make'
          }    
       }
     }     
