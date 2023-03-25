@@ -15,7 +15,7 @@ pipeline {
     }
   }
   stages {
-    stage('clean workspace') {
+/*    stage('clean workspace') {
       steps {
         cleanWs()
       }
@@ -24,7 +24,8 @@ pipeline {
       steps {
         checkout scm
       }
-    }     
+    }
+*/    
  stage('install make') {
       steps container('ubuntu') {
         sh 'apt update && apt install make'
