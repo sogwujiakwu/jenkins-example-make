@@ -20,11 +20,12 @@ pipeline {
         checkout scm
       }
     }     
-    stage('install make') {
+/*    stage('install make') {
       steps {
         sh 'apk update && apk install make'
       }
-    }    
+    } 
+*/    
     stage('verify make is installed') {
       steps {
         sh 'make --version'
