@@ -59,22 +59,29 @@ pipeline {
     }
    
  stage('install make') {
-      steps container('ubuntu') {
-        sh 'apt update && apt install make'
+     steps {
+          container('ubuntu') {
+            sh 'apt update && apt install make'
+         }    
       }
     }     
     stage('verify make is installed') {
-      steps container('ubuntu') {
-        sh 'make --version'
+        steps {
+          container('ubuntu') {
+            sh 'make --version'
+         }    
       }
     }
     stage('run make') {
-      steps container('ubuntu') {
-        sh 'make'
+        steps { 
+           container('ubuntu') {
+            sh 'make'
+         }     
       }
     }
-  }    
-/*  stages {
+  } 
+/*   
+  stages {
     stage('Run maven') {
       steps {
         container('maven') {
@@ -90,5 +97,5 @@ pipeline {
       }
     }
   }
-*/  
+*/ 
 }
